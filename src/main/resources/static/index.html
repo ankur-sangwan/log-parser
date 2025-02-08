@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Log Parser: Homepage</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+<label for="datepickerfrom">Select a Date:</label>
+<input id="datepickerfrom" name="datepickerfrom" width="250" type="date" required />
+<p>View Unique IP Dashboard
+    <a id="uniqueipdashboardLink" href="/log-parser/dashboard/unique-ip?date=">here</a>
+</p>
+    <p>View Hourly Traffic Dashboard
+        <a id="hourlytrafficdashboardLink" href="/log-parser/dashboard/hourly-traffic?date=">here</a>
+    </p>
+    <p>View TOP CONTRIBUTING IP Dashboard
+        <a id="topcontributingipdashboardLink" href="/log-parser/dashboard/top-contributing-ips?date=">here</a>
+    </p>
+    <p>View TOP Traffic HOUR Dashboard
+        <a id="toptraffichourdashboardLink" href="/log-parser/dashboard/top-traffic-hours?date=">here</a>
+    </p>
+</div>
+<script>
+    const dateInput = document.getElementById("datepickerfrom");
+    const uniqueipdashboardLink = document.getElementById("uniqueipdashboardLink");
+    const hourlytrafficdashboardLink = document.getElementById("hourlytrafficdashboardLink");
+    const topcontributingipdashboardLink = document.getElementById("topcontributingipdashboardLink");
+    const toptraffichourdashboardLink = document.getElementById("toptraffichourdashboardLink");
+
+    dateInput.addEventListener("change", () => {
+      const selectedDate = new Date(dateInput.value);
+      if (!isNaN(selectedDate)) {
+        // Format date as DD/Mon/YYYY (e.g., 30/Jan/2024)
+        const formattedDate = selectedDate
+          .toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })
+          .replace(/\s/g, "/");
+
+
+        uniqueipdashboardLink.href = `/log-parser/dashboard/unique-ip?date=${formattedDate}`;
+        hourlytrafficdashboardLink.href = `/log-parser/dashboard/hourly-traffic?date=${formattedDate}`;
+        topcontributingipdashboardLink.href = `/log-parser/dashboard/top-contributing-ips?date=${formattedDate}`;
+        toptraffichourdashboardLink.href = `/log-parser/dashboard/top-traffic-hours?date=${formattedDate}`;
+      }
+    });
+</script>
+</body>
+</html>

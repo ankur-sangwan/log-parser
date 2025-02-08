@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>Top Hours Contributing to 70% Traffic </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .container{
+            text-align:center;
+            color:green;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Top Hours Contributing to 70% Traffic</h1>
+    <table class="table table-dark table-bordered">
+        <thead>
+        <tr>
+            <th scope="col" th:text="|Top Traffic Hours|" />
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="data : ${topContributingHourPage.content}">
+            <td th:text="${data}" />
+        </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li th:if="${topContributingHourPage.totalPages > 0}" class="page-item" th:classappend="${pageNumber==topContributingHourPage.number + 1} ? active"
+            th:each="pageNumber : ${pageNumbers}">
+            <a th:href="@{/log-parser/dashboard/top-traffic-hours(date=${date},page=${pageNumber})}"
+               th:text=${pageNumber}
+               th:class="page-link"></a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
