@@ -17,6 +17,4 @@ public class HourlyTrafficVisitors {
                 ", visitors=" + visitors +
                 '}';
     }
-
-
 }
