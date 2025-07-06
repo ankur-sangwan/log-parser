@@ -45,7 +45,10 @@ public class DashboardController {
         }
         model.addAttribute("date", date);
         return "unique-ip";
+
+
     }
+
 
     @GetMapping("/hourly-traffic")
     public String getHourlyTrafficAtaGivenDay(@RequestParam String date, Model model, @RequestParam("page") Optional<Integer> page) {
